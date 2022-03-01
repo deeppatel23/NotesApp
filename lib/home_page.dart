@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notesapp/view_notes.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -52,20 +53,29 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListView.builder(
                   itemCount: title.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 6,
-                      margin: EdgeInsets.all(10),
-                      child: ListTile(
-                          leading: CircleAvatar(
-                            child: Text(index.toString()),
-                            backgroundColor: Colors.blue,
-                          ),
-                          title: Text(title[index]),
-                          subtitle: Text(description[index]),
-                          trailing: Icon(
-                            Icons.delete,
-                            color: Color.fromARGB(255, 245, 102, 91),
-                          )),
+                    return GestureDetector(
+                      child: Card(
+                        elevation: 6,
+                        margin: EdgeInsets.all(10),
+                        child: ListTile(
+                            leading: CircleAvatar(
+                              child: Text(index.toString()),
+                              backgroundColor: Colors.blue,
+                            ),
+                            title: Text(title[index]),
+                            subtitle: Text(description[index]),
+                            trailing: Icon(
+                              Icons.delete,
+                              color: Color.fromARGB(255, 245, 102, 91),
+                            )),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewNotes(
+                                    title[index], description[index])));
+                      },
                     );
                   }),
             ),
